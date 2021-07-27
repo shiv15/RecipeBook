@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import logo from "../assets/logo.png";
+import logo from "../assets/recipe-book.png";
 
 const ImageSpan = styled.span`
     & img {
         width: 240px;
+        height: 100px;
 
         @media only screen and (max-width: 600px) {
             width: 220px;
@@ -18,12 +19,7 @@ const ImageSpan = styled.span`
 
 const Logo = (props) => {
     return (
-        <ImageSpan>
-            <img
-                src={logo}
-                alt='logo'
-            />
-        </ImageSpan>
+       <h1>RecipeBook</h1>
     );
 };
 

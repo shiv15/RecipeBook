@@ -7,7 +7,6 @@ import { useDarkMode } from "../useDarkMode";
 import Home from "../pages/Home";
 import Likes from "../pages/Likes";
 import Header from "./Header";
-import Footer from "./Footer";
 
 const App = () => {
     const [theme, setTheme] = useDarkMode();
@@ -25,7 +24,6 @@ const App = () => {
                     <Route path="/" exact component={Home} />
                     <Route path="/likes" exact component={Likes} />
                 </Switch>
-                <Footer />
             </Router>
         </ThemeProvider>
     );

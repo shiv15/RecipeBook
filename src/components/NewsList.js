@@ -13,10 +13,10 @@ const NewsContainer = styled.ul`
     }
 `
 
-const NewsList = ({ stories }) => {
+const NewsList = ({ recipes }) => {
     return (
         <NewsContainer>
-            {stories.map(story => <NewsItem story={story} key={story.id} />)}
+            {recipes.map(recipe => <NewsItem recipes= {recipes} recipe={recipe}/>)}
         </NewsContainer>
     );
 };

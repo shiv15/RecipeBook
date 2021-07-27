@@ -1,30 +1,30 @@
 import React, { useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { connect } from 'react-redux';
-import { fetchStoryIDs, fetchStories } from "../actions";
+import { fetchRecipes } from "../actions";
 import NewsList from "../components/NewsList";
 import Loader from "../components/Loader";
-import { hasMoreStoriesSelector } from '../reducers/selector';
+// import { hasMoreStoriesSelector } from '../reducers/selector';
 
 
-const Home = ({ fetchStoryIDs, fetchStories, storyIds, page, isFetching, stories, hasMoreStories, isLiked }) => {
+const Home = ({ fetchRecipes, recipes, page, isFetching, hasMoreStories, isLiked }) => {
 
     const fetchStory = () => {
         if (!isFetching) {
-            fetchStories({ storyIds, page });
+            fetchRecipes();
         }
     }
 
     useEffect(() => {
-        if (stories.length === 0) {
-            fetchStoryIDs();
+        if (recipes.length === 0) {
+            fetchRecipes();
         }
     }, []);
 
     return (
         <main>
             <InfiniteScroll
-                dataLength={stories.length}
+                dataLength={recipes.length}
                 next={fetchStory}
                 hasMore={hasMoreStories}
                 loader={<Loader />}
@@ -33,7 +33,7 @@ const Home = ({ fetchStoryIDs, fetchStories, storyIds, page, isFetching, stories
                     overflow: 'visible'
                 }}
             >
-                <NewsList stories={stories} />
+                <NewsList recipes={recipes} />
             </InfiniteScroll>
         </main>
     );
@@ -42,14 +42,13 @@ const Home = ({ fetchStoryIDs, fetchStories, storyIds, page, isFetching, stories
 const mapStateToProps = (state) => {
 
     return {
-        stories: state.story.stories,
+        recipes: state.story.recipes,
         page: state.story.page,
-        storyIds: state.story.storyIds,
         isFetching: state.story.isFetching,
-        hasMoreStories: hasMoreStoriesSelector(state),
+        // hasMoreStories: hasMoreStoriesSelector(state),
     }
 };
 
 
 
-export default connect(mapStateToProps, { fetchStoryIDs, fetchStories })(Home);
+export default connect(mapStateToProps, { fetchRecipes })(Home);

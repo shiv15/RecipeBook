@@ -1,9 +1,9 @@
 import { actionTypes } from "../actions/types";
 
 const getInitialState = () => ({
-    storyIds: [],
-    stories: [],
-    likedStories: [],
+    recipes: [],
+    recipes: [],
+    likedRecipes: [],
     page: 0,
     isFetching: false,
     error: '',
@@ -18,17 +18,17 @@ export default (state = getInitialState(), action) => {
                 isFetching: true,
             };
 
-        case actionTypes.FETCH_STORY_IDS_SUCCESS:
+        case actionTypes.FETCH_RECIPE_SUCCESS:
             return {
                 ...state,
-                storyIds: action.payload,
+                recipes: action.payload,
             };
 
-        // Add new stories to previous stories
+        // Add new recipes to previous recipes
         case actionTypes.FETCH_STORIES_SUCCESS:
             return {
                 ...state,
-                stories: [...state.stories, ...action.payload],
+                recipes: [...state.recipes, ...action.payload],
                 page: state.page + 1,
                 isFetching: false,
             }
@@ -36,8 +36,8 @@ export default (state = getInitialState(), action) => {
         case actionTypes.SET_LIKE:
             return {
                 ...state,
-                stories: [...action.payload.stories],
-                likedStories: action.payload.newLikedStories,
+                recipes: [...action.payload.recipes],
+                likedRecipes: action.payload.newLikedRecipes,
             }
 
         default:

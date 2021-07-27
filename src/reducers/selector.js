@@ -1,10 +1,10 @@
-import { createSelector } from "reselect";
+// import { createSelector } from "reselect";
 
-const storyIDsSelector = state => state.story.storyIds;
-const storiesSelector = state => state.story.stories;
+// const storyIDsSelector = state => state.story.recipes;
+// const storiesSelector = state => state.story.stories;
 
-export const hasMoreStoriesSelector = createSelector(
-    storyIDsSelector, // return storyIds
-    storiesSelector, // returns stories
-    (storyIds, stories) => storyIds.length > stories.length,
-);
+// export const hasMoreStoriesSelector = createSelector(
+//     storyIDsSelector, // return recipes
+//     storiesSelector, // returns stories
+//     (recipes, stories) => recipes.length > recipes.length,
+// );

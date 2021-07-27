@@ -112,31 +112,30 @@ const LikeDiv = styled.div`
 
 `;
 
-// const timeago = Timeago();
 
-const NewsItem = ({ story, stories = [], likedStories = [], setLike }) => {
+const NewsItem = ({ recipe, recipes = [], likedRecipes = [], setLike }) => {
+    
+    const { spoonacularSourceUrl, vegan, glutenFree, vegetarian, spoonacularScore, sourceName, sourceUrl, title, id, type, readyInMinutes , isLiked } = recipe;
 
-    const { by, kids = [], score, url, title, id, type, time, isLiked } = story;
-
-    const site = getHostname(url) || 'news.ycombinator.com';
-    const link = getNewsLink({ url, id });
+    const site = spoonacularSourceUrl;
+    const link = spoonacularSourceUrl;
     const commentUrl = `${HN_ITEM}${id}`;
-    const userUrl = `${HN_USER}${by}`;
+    // const sourceUrl = `${HN_USER}${by}`;
 
     const toggleLike = () => {
         let liked;
         (isLiked) ? liked = false : liked = true;
-        setLike({ liked, story, stories, likedStories });
+        setLike({ liked, recipe, recipes, likedRecipes });
     };
 
     return (
         <Item>
             <PointsDiv>
                 <Score>
-                    {score}
+                    {spoonacularScore}
                 </Score>
                 <Points>
-                    points
+                    Score
                 </Points>
             </PointsDiv>
             <NewsContent>
@@ -145,14 +144,24 @@ const NewsItem = ({ story, stories = [], likedStories = [], setLike }) => {
                 </NewsLink>
                 <Description>
                     by {" "}
-                    <CommentLink href={userUrl} rel="noopener noreferrer nofollow" target="_blank">
-                        {by}
+                    <CommentLink href={sourceUrl} rel="noopener noreferrer nofollow" target="_blank">
+                        {sourceName}
                     </CommentLink>
-                    <Time>{timeago.format(new Date(time * 1000).toISOString())}</Time>
+                    <Time> | Time taken : {readyInMinutes}</Time>
                     {'| '}
-                    <CommentLink href={commentUrl} rel="noopener noreferrer nofollow" target="_blank">
-                        {kids.length} Comments
-                    </CommentLink>
+                    {vegetarian ?   
+                    <CommentLink >
+                    Vegetarian {'| '}
+                    </CommentLink> : null}
+                    
+                    {vegan ?   
+                    <CommentLink >
+                    Vegan {'| '}
+                    </CommentLink> : null}
+                    {glutenFree ?   
+                    <CommentLink  >
+                    Gluten Free {'| '}
+                    </CommentLink> : null}
                 </Description>
             </NewsContent>
             <LikeDiv>
@@ -168,7 +177,7 @@ const mapStateToProps = (state) => {
     // console.log(state.story);
     return {
         stories: state.story.stories,
-        likedStories: state.story.likedStories,
+        likedRecipes: state.story.likedRecipes,
     };
 };
 

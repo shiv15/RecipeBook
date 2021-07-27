@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default axios.create({
-    baseURL: "https://hacker-news.firebaseio.com/v0",
+    baseURL: "https://api.spoonacular.com/recipes",
     headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',

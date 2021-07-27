@@ -2,10 +2,10 @@ import React from "react";
 import NewsList from "../components/NewsList";
 import { connect } from 'react-redux';
 
-const Likes = ({ likedStories }) => {
+const Likes = ({ likedRecipes }) => {
     return (
         <main>
-            <NewsList stories={likedStories} />
+            <NewsList recipes={likedRecipes} />
         </main>
     );
 };
@@ -13,7 +13,7 @@ const Likes = ({ likedStories }) => {
 const mapStateToProps = (state) => {
     console.log(state);
     return {
-        likedStories: state.story.likedStories,
+        likedRecipes: state.story.likedRecipes,
     }
 };
 
